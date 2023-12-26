@@ -1,23 +1,25 @@
 <div class="ui large inverted menu">
  <div class="ui container">
+      <%= link_to "Sala de chats", root_path, class: "item" %>
     <a class="item">
-      Sala de chats
-    </a>
-    <a class="item">
-      Mensages
+      Mensajes
     </a>
     <div class="right menu">
       <div class="ui dropdown item">
         Cuenta <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item">Iniciar Sesión</a>
-          <a class="item">Regístrarse</a>
-          <a class="item">Cerrar Sesión</a>
+        <% if logged_in? %>
+        | <%= link_to "Cerrar Sesion", logout_path, method: :delete, class: "item" %>
+        <% else %>
+        | <%= link_to "Iniciar Sesion", login_path, class: "item" %>
+        <% end %>
         </div>
       </div>
-      <div class="item">
-          <div class="ui primary button">Iniar Sesion</div>
-      </div>
+     <% if !logged_in? %>
+        <div class="item">
+             <%= link_to "Iniciar Sesion", login_path, class: "ui primary button" %>
+        </div>
+      <%end%>
     </div>
  </div>
 </div>
